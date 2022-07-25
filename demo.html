@@ -5,17 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./js/jquery-3.4.1.js"></script>
     <script src="bulltech.JQuery.AdvancedSelect.js"></script>
-
+    <style>
+        .menu-css
+        {
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: aquamarine;
+        }
+        .menu-item-css
+        {
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            padding:5px;
+        }
+        .menu-item-css:hover{
+            background-color: #0099ff;
+            cursor: pointer;
+        }
+    </style>
     <title>Demo</title>
 </head>
 <body>
-    
-    <input type="text" id="testSelect" />
+     <input type="text" id="testSelect" style="height:50px;left:100px;position: relative;" />
     <button id="setSelect">Please Click Me</button>
 
 <script>
     $("#setSelect").click(function () {
         $("#testSelect").doSelect();
+    });
+
+
+    $("document").ready(function(){
+        $("#testSelect").doSelect({
+            onlySelectLastChild: true,
+            menuCssClass : "menu-css",
+            menuItemCssClass : "menu-item-css",
+            dataString :'[{"id":1,"title":"ehsan niazi","childs":[]},{"id":1,"title":"afshin niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]}]'
+        });
     });
 </script>
 
