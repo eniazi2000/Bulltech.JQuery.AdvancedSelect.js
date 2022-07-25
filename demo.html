@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="./js/jquery-3.4.1.js"></script>
     <script src="bulltech.JQuery.AdvancedSelect.js"></script>
     <style>
@@ -12,16 +13,25 @@
             overflow-y: auto;
             background-color: aquamarine;
         }
+        
         .menu-item-css
         {
             display: block;
-            height: 30px;
-            line-height: 30px;
             padding:5px;
         }
         .menu-item-css:hover{
             background-color: #0099ff;
             cursor: pointer;
+        }
+        .menu-item-css span 
+        {
+            height: 30px;
+            line-height: 30px;
+            
+        }
+        .menu-item-css i{
+            float: right;
+            line-height: 30px;
         }
     </style>
     <title>Demo</title>
@@ -41,7 +51,9 @@
             onlySelectLastChild: true,
             menuCssClass : "menu-css",
             menuItemCssClass : "menu-item-css",
-            dataString :'[{"id":1,"title":"ehsan niazi","childs":[]},{"id":1,"title":"afshin niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]}]'
+            arrowLeftCss: "fa-solid fa-angle-left",
+            arrowRightCss:"fa-solid fa-angle-right",
+            dataString :'[{"id":1,"title":"ehsan niazi","childs":[{"id":4,"title":"test sub menu","childs":[]}]},{"id":1,"title":"afshin niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]}]'
         });
     });
 </script>
