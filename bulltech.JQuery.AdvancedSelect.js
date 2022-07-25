@@ -4,59 +4,21 @@
     var data;
     var continerDiv = document.createElement("div");
     var thisInput;
-    function createBackItem(backData,backTitle,parentIsMainList)
+
+    function createMenuPlan(itemsData)
     {
-        var backitem = document.createElement("div");
-        var arrow = document.createElement("i");
-        var span = document.createElement("span"); 
+        var conter = document.createElement("div");
+        $.each( itemsData,function(key,value){
 
-        $(backData).attr("class",settings.menuItemCssClass);
-        $(arrow).attr("class",settings.arrowLeftCss);
-        $(span).text(backTitle);
-        $(span).attr("back-data",JSON.stringify(backData));
-
-
-
-        $(backitem).append(span);
-        $(backitem).append(arrow);
-        return backitem;
-    }
-
-
-
-
-    function addChildsItemsToContiner(itemsData,parentIsMainList){
-        var backitem;
-        if(parentIsMainList)
-        {
-            backitem = createBackItem(data,"بازگشت",parentIsMainList);
-        }
-        else
-        {
-            backitem = createBackItem(itemsData,"بازگشت",parentIsMainList)
-        }
-
-        $(continerDiv).empty();
-
-
-        $(continerDiv).append(backitem);
-    }
-
-
-    function addParentItemsToContiner(){
-        if(data!=null)
-        {
-        $.each( data, function( key, value ) {
+            
             var item = document.createElement("div");
             var arrow = document.createElement("i");
             var span = document.createElement("span");
-            $(arrow).attr("class",settings.arrowRightCss);
+            $(arrow).attr("class",settings.arrowCloseCss);
             $(span).text(value.title);
             $(span).attr("index",value.id);
             $(item).attr("class",settings.menuItemCssClass);
             $(item).append(span);
-
-            //chack item has child if true add arrow
             if(value.childs.length>0)
             {
                 //check only last child selectable or not if not assign click function to him
@@ -69,12 +31,21 @@
                             console.log($(this).text());
                         });
                     }
-                    else
-                    {
-                        $(arrow).click(function(){
-                            addChildsItemsToContiner(data,true);
-                        });
-                    }
+
+                    $(arrow).click(function(){
+                        //console.log($(this));
+                       $(this).closest("."+settings.menuItemCssClass).find("div").first().slideToggle(200);
+                       //console.log($(this).closest("."+settings.menuItemCssClass).find("div").first().is(":visible"));
+                       if($(this).hasClass(settings.arrowOpenCss))
+                       {
+                        $(this).removeClass(settings.arrowOpenCss).addClass(settings.arrowCloseCss);
+                       }
+                       else
+                       {
+                        $(this).removeClass(settings.arrowCloseCss).addClass(settings.arrowOpenCss);
+                       }
+                    });
+
 
 
                 $(item).append(arrow);
@@ -89,8 +60,30 @@
                     console.log($(this).text());
                 });
             }
-            $(continerDiv).append(item);
-          });
+
+            $(conter).append(item);
+            if(value.childs.length>0)
+            {
+                var newItem = createMenuPlan(value.childs);
+               // $(newItem).css("display","none");
+                  $(newItem).slideUp(10);
+                  $(item).append(newItem);
+            }
+
+
+        });
+        
+        return conter;
+    }
+
+
+
+    function addParentItemsToContiner(){
+        if(data!=null)
+        {
+            var div = createMenuPlan(data);
+            $(continerDiv).append(div);
+            console.log(div);
         }
     }
 
@@ -104,8 +97,8 @@
             onlySelectLastChild: true,
             menuCssClass : "",
             menuItemCssClass:"",
-            arrowLeftCss:"",
-            arrowRightCss:"",
+            arrowCloseCss:"",
+            arrowOpenCss:"",
             dataString:""
         }, options);
         thisInput=$(this);

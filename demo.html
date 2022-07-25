@@ -11,35 +11,43 @@
         {
             max-height: 200px;
             overflow-y: auto;
-            background-color: aquamarine;
+            background-color: #ffffff;
+            border: 1px solid #212121;
+            box-shadow: 2px 5px 8px 1px rgba(0,0,0,0.62);
+-webkit-box-shadow: 2px 5px 8px 1px rgba(0,0,0,0.62);
+-moz-box-shadow: 2px 5px 8px 1px rgba(0,0,0,0.62);
         }
         
         .menu-item-css
         {
             display: block;
             padding:5px;
+           
         }
         .menu-item-css:hover{
-            background-color: #0099ff;
+            background-color: #ffffff;
+            color: #0099ff;
             cursor: pointer;
         }
         .menu-item-css span 
         {
             height: 30px;
             line-height: 30px;
-            
+           width: 100%;           
+        }
+        .menu-item-css span:hover{
+     
         }
         .menu-item-css i{
             float: right;
             line-height: 30px;
+            width: 30px;
         }
     </style>
     <title>Demo</title>
 </head>
 <body>
-     <input type="text" id="testSelect" style="height:50px;left:100px;position: relative;" />
-    <button id="setSelect">Please Click Me</button>
-
+     <input type="text" id="testSelect" style="height:50px;width:300px;left:100px;position: relative;" />
 <script>
     $("#setSelect").click(function () {
         $("#testSelect").doSelect();
@@ -48,12 +56,12 @@
 
     $("document").ready(function(){
         $("#testSelect").doSelect({
-            onlySelectLastChild: true,
+            onlySelectLastChild: false,
             menuCssClass : "menu-css",
             menuItemCssClass : "menu-item-css",
-            arrowLeftCss: "fa-solid fa-angle-left",
-            arrowRightCss:"fa-solid fa-angle-right",
-            dataString :'[{"id":1,"title":"ehsan niazi","childs":[{"id":4,"title":"test sub menu","childs":[]}]},{"id":1,"title":"afshin niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]}]'
+            arrowOpenCss: "fa-solid fa-angle-down",
+            arrowCloseCss:"fa-solid fa-angle-right",
+            dataString :'[{"id":1,"title":"ehsan niazi","childs":[{"id":4,"title":"test sub menu","childs":[{"id":4,"title":"test sub menu1","childs":[]},{"id":4,"title":"test sub menu2","childs":[]}]}]},{"id":1,"title":"afshin niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]},{"id":1,"title":"kurosh niazi","childs":[]}]'
         });
     });
 </script>
