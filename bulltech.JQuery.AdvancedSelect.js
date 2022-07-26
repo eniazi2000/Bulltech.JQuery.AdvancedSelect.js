@@ -1,7 +1,7 @@
 (function ($) {
     var settings;
-    var thisTop,thisWidth,thisHeight,thisLeft;
-    var data;
+ 
+
     var continerDiv = document.createElement("div");
     var thisInput;
 
@@ -78,7 +78,7 @@
 
 
 
-    function addParentItemsToContiner(){
+    function addParentItemsToContiner(data){
         if(data!=null)
         {
             var div = createMenuPlan(data);
@@ -101,7 +101,10 @@
             arrowOpenCss:"",
             dataString:""
         }, options);
+ 
         thisInput=$(this);
+        var thisTop,thisWidth,thisHeight,thisLeft;
+        var data;
         //convert data string to data as JSON
         try
         {
@@ -140,10 +143,7 @@
         $(continerDiv).css("display","none");
 
         // add parent items to continer
-        addParentItemsToContiner();
-
-
-
+        addParentItemsToContiner(data);
 
         $("body").append(continerDiv);
 
