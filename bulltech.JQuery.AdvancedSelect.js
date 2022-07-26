@@ -1,10 +1,7 @@
 (function ($) {
     var settings;
- 
-
     var continerDiv;
     var thisInput;
-
     function createMenuPlan(itemsData)
     {
         var conter = document.createElement("div");
@@ -75,9 +72,6 @@
         
         return conter;
     }
-
-
-
     function addParentItemsToContiner(data){
         if(data!=null)
         {
@@ -86,12 +80,12 @@
             console.log(div);
         }
     }
-
     function hideMenu()
     {
         $(continerDiv).css("display","none");
+        if(settings.onSelect!=null)
+        settings.onSelect();
     }
-
     $.fn.doSelect = function (options) {
         settings = $.extend({
             onlySelectLastChild: true,
@@ -99,7 +93,8 @@
             menuItemCssClass:"",
             arrowCloseCss:"",
             arrowOpenCss:"",
-            dataString:""
+            dataString:"",
+            onSelect : null
         }, options);
  
         continerDiv = document.createElement("div");
@@ -121,8 +116,12 @@
         // get element dimenstion
         thisHeight = parseInt($(this).outerHeight(true));
         thisWidth = parseInt($(this).outerWidth(true));
-        thisTop= $(this).position().top;
-        thisLeft = $(this).position().left;
+        thisTop= $(this).offset().top -$(window).scrollTop();
+
+        $(window).scroll(function() { //when window is scrolled
+            thisTop= $(this).offset().top -$(window).scrollTop();
+        });
+        thisLeft = $(this).offset().left;
 
         // active and diactive select menu
         $(this).focus(function(){
