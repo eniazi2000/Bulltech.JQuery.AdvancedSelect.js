@@ -2,7 +2,7 @@
     var settings;
  
 
-    var continerDiv = document.createElement("div");
+    var continerDiv;
     var thisInput;
 
     function createMenuPlan(itemsData)
@@ -102,6 +102,7 @@
             dataString:""
         }, options);
  
+        continerDiv = document.createElement("div");
         thisInput=$(this);
         var thisTop,thisWidth,thisHeight,thisLeft;
         var data;
